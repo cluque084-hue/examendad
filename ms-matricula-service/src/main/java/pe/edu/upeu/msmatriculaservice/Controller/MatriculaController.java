@@ -10,6 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/matricula")
 public class MatriculaController {
+
     @Autowired
     MatriculaService matriculaService;
 
@@ -20,16 +21,16 @@ public class MatriculaController {
 
     @GetMapping("/{id}")
     public Matricula buscarPorId(@PathVariable Integer id) {
-        return matriculaService.buscarPorId(id).get();
+        return matriculaService.buscarPorId(id).orElse(null);
     }
 
     @PostMapping
-    public Matricula guardar(Matricula matricula) {
+    public Matricula guardar(@RequestBody Matricula matricula) {
         return matriculaService.guardar(matricula);
     }
 
     @PutMapping
-    public Matricula actualizar(Matricula matricula) {
+    public Matricula actualizar(@RequestBody Matricula matricula) {
         return matriculaService.actualizar(matricula);
     }
 
